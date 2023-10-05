@@ -35,7 +35,7 @@ defaults
 
 frontend myfrontend
 	bind *:80
-	bind *:443 ssl crt /etc/haproxy/certs/www.saadout.tech.pem
+	bind *:443 ssl crt /etc/haproxy/certs/www.assimv3.tech.pem
 	default_backend myservers
 
 backend myservers
