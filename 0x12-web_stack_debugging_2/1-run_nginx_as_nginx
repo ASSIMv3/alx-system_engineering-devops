@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Update the Nginx configuration to run as the nginx user
+sed -i 's/user www-data;/user nginx;/' /etc/nginx/nginx.conf
+# Update the Nginx default site configuration to listen on port 8080
+sed -i 's/listen 80 default_server;/listen 8080;/' /etc/nginx/sites-available/default
+# Restart Nginx to apply the changes
+service nginx restart
+# Check Nginx's status
+ps aux | grep nginx
