@@ -1,19 +1,24 @@
 #!/usr/bin/python3
 """displays user's TODO list using {JSON} Placeholder REST API"""
-import requests
-from sys import argv
+
+
+def main():
+    """return to-do list"""
+    import requests
+    import sys
+
+    user_id = int(sys.argv[1])
+    user = requests.get('https://jsonplaceholder.typicode.com/users/' +
+                        '{}'.format(user_id))
+    todos = requests.get('https://jsonplaceholder.typicode.com/todos' +
+                         '?userId={}'.format(user_id))
+
+    done = [task for task in todos.json() if task.get('completed', False)]
+    print("Employee {} is done with tasks".format(user.json().get('name')) +
+          "({}/{}):".format(len(done), len(todos.json())))
+    for task in done:
+        print("\t {}".format(task.get('title')))
 
 
 if __name__ == '__main__':
-    userId = argv[1]
-    user = requests.get("https://jsonplaceholder.typicode.com/users/{}".
-                        format(userId), verify=False).json()
-    todo = requests.get("https://jsonplaceholder.typicode.com/todos?userId={}".
-                        format(userId), verify=False).json()
-    completed_tasks = []
-    for task in todo:
-        if task.get('completed') is True:
-            completed_tasks.append(task.get('title'))
-    print("Employee {} is done with tasks({}/{}):".
-          format(user.get('name'), len(completed_tasks), len(todo)))
-    print("\n".join("\t {}".format(task) for task in completed_tasks))
+    main()
