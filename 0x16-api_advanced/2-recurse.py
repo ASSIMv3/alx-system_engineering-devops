@@ -14,7 +14,7 @@ def recurse(subreddit, hot_list=[], after=None):
     if after:
         url += f'&after={after}'
 
-    headers = {'User-Agent': 'API-Client'}
+    headers = {'User-Agent': 'task2api'}
     response = requests.get(url, headers=headers, allow_redirects=False)
 
     if response.status_code == 200:
