@@ -5,6 +5,7 @@ import requests
 
 def recurse(subreddit, hot_list=[], after=None):
     """returns a list of titles"""
+    
     url = f'https://www.reddit.com/r/{subreddit}/hot.json?limit=100'
 
     if after:
