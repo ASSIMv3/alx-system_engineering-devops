@@ -3,7 +3,7 @@
 import requests
 
 
-def recurse(subreddit, hot_list=[], after=None):
+def recurse(subreddit, hot_list=[]):
     """returns a list containing the titles of all hot articles"""
 
     url = f'https://www.reddit.com/r/{subreddit}/hot.json?limit=100'
