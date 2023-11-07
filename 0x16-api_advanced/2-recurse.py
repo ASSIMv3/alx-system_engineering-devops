@@ -1,13 +1,10 @@
 #!/usr/bin/python3
-"""A recursive function that queries the Reddit API"""
+"""function that queries the Reddit API"""
 import requests
 
 
 def recurse(subreddit, hot_list=[], after=None):
-    """
-    Returns a list containing the titles of all hot articles
-    for a given subreddit
-    """
+    """returns a list containing the titles of all hot articles"""
 
     url = f'https://www.reddit.com/r/{subreddit}/hot.json?limit=100'
 
@@ -24,7 +21,7 @@ def recurse(subreddit, hot_list=[], after=None):
             title = post['data']['title']
             hot_list.append(title)
 
-        after = data['data']['after']
+        after = response.json()['data']['after']
         if after:
             return recurse(subreddit, hot_list, after)
         else:
