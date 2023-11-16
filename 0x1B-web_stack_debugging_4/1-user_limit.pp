@@ -5,6 +5,5 @@ exec { 'increase limit':
 }
 exec { 'increase soft':
   provider => shell,
-  command  => 'sudo sed -i "s/holberton soft nofile 4/holberton soft nofile 40000/g" /etc/security/limits.conf',
- 
+  command  => 'sudo sed -i "s/holberton soft nofile 4/holberton soft nofile 40000/g" /etc/security/limits.conf', 
 }
